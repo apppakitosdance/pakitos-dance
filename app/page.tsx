@@ -51,24 +51,23 @@ export default function HomePage() {
               <div className="mx-auto mb-4 p-4 bg-secondary/20 rounded-full w-fit border border-secondary/30">
                 <Activity className="h-8 w-8 text-secondary" />
               </div>
-              <CardTitle className="text-2xl font-bold text-secondary">Gordura Corporal & TMB</CardTitle>
+              <CardTitle className="text-2xl font-bold text-secondary">Calculadora de TMB</CardTitle>
               <CardDescription className="text-base text-card-foreground">
-                Calcule seu percentual de gordura corporal e Taxa Metabólica Basal
+                Calcule sua Taxa Metabólica Basal e necessidades calóricas diárias
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <h4 className="font-semibold text-card-foreground">O que você vai descobrir:</h4>
                 <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Percentual de gordura corporal</li>
                   <li>• Taxa Metabólica Basal (TMB)</li>
                   <li>• Calorias necessárias por dia</li>
-                  <li>• Massa magra e massa gorda</li>
+                  <li>• Necessidades por nível de atividade</li>
                 </ul>
               </div>
               <Link href="/gordura-tmb" className="block">
                 <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold py-3 transition-colors border border-secondary/50">
-                  Calcular Gordura & TMB
+                  Calcular TMB
                 </Button>
               </Link>
             </CardContent>
