@@ -53,7 +53,7 @@ export default function HomePage() {
               <div className="mx-auto mb-4 p-3 bg-secondary/20 rounded-full w-fit">
                 <Activity className="h-8 w-8 text-secondary" />
               </div>
-              <CardTitle className="text-2xl font-bold text-secondary">Gordura Corporal & TMB</CardTitle>
+              <CardTitle className="text-2xl font-bold text-foreground">Gordura Corporal & TMB</CardTitle>
               <CardDescription className="text-base text-card-foreground">
                 Calcule seu percentual de gordura corporal e Taxa Metabólica Basal
               </CardDescription>
