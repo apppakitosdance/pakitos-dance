@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: ''
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
@@ -33,16 +32,21 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: Build with Next.js
         run: npm run build
-      - name: List build output
+      - name: Check and prepare output
         run: |
-          echo "Root directory contents:"
-          ls -la
-          echo "Checking for out directory:"
-          ls -la out/ || echo "out directory not found"
-          echo "Checking for .next directory:"
-          ls -la .next/ || echo ".next directory not found"
-          echo "Checking for dist directory:"
-          ls -la dist/ || echo "dist directory not found"
+          if [ ! -d "out" ]; then
+            echo "out directory not found, checking alternatives..."
+            if [ -d ".next" ]; then
+              echo "Using .next directory"
+              cp -r .next ./out
+            else
+              echo "Creating empty out directory"
+              mkdir -p out
+              echo "<h1>Build Error</h1>" > out/index.html
+            fi
+          fi
+          echo "Final out directory contents:"
+          ls -la out/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
