@@ -112,7 +112,7 @@ export default function HomePage() {
       <footer className="bg-card border-t border-gray-200 mt-16">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center text-muted-foreground">
-            <p className="text-sm">© 2024 Academia Pakitos Dance. Desenvolvido por Rafael Nunes Gasperini.</p>
+            <p className="text-sm">© 2025 Academia Pakitos Dance. Desenvolvido por Rafael Nunes Gasperini.</p>
             <p className="text-xs mt-2">Consulte sempre um profissional de saúde para orientações personalizadas.</p>
           </div>
         </div>
