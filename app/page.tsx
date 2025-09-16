@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-card border-b border-border">
+      <header className="bg-card border-b border-gray-200">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-foreground mb-4">Calculadora Academia Pakitos Dance</h1>
@@ -109,7 +109,7 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-card border-t border-border mt-16">
+      <footer className="bg-card border-t border-gray-200 mt-16">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center text-muted-foreground">
             <p className="text-sm">© 2024 Academia Pakitos Dance. Desenvolvido por Rafael Nunes Gasperini.</p>
