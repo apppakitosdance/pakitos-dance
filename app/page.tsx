@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-card border-b border-gray-200">
+      <header className="bg-background border-b border-border/30">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-foreground mb-4">Calculadora Academia Pakitos Dance</h1>
@@ -19,10 +19,9 @@ export default function HomePage() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* IMC Calculator Card */}
-          <Card className="hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-2 hover:border-primary/50 bg-card">
+          <Card className="hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-2 border-primary/50 hover:border-primary bg-card/80 backdrop-blur-sm">
             <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 p-3 bg-primary/20 rounded-full w-fit">
+              <div className="mx-auto mb-4 p-4 bg-primary/20 rounded-full w-fit border border-primary/30">
                 <Calculator className="h-8 w-8 text-primary" />
               </div>
               <CardTitle className="text-2xl font-bold text-primary">Calculadora de IMC</CardTitle>
@@ -40,20 +39,19 @@ export default function HomePage() {
                 </ul>
               </div>
               <Link href="/imc" className="block">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 transition-colors">
+                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 transition-colors border border-primary/50">
                   Calcular IMC
                 </Button>
               </Link>
             </CardContent>
           </Card>
 
-          {/* Body Fat & TMB Calculator Card */}
-          <Card className="hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300 border-2 hover:border-secondary/50 bg-card">
+          <Card className="hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300 border-2 border-secondary/50 hover:border-secondary bg-card/80 backdrop-blur-sm">
             <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 p-3 bg-secondary/20 rounded-full w-fit">
+              <div className="mx-auto mb-4 p-4 bg-secondary/20 rounded-full w-fit border border-secondary/30">
                 <Activity className="h-8 w-8 text-secondary" />
               </div>
-              <CardTitle className="text-2xl font-bold text-foreground">Gordura Corporal & TMB</CardTitle>
+              <CardTitle className="text-2xl font-bold text-secondary">Gordura Corporal & TMB</CardTitle>
               <CardDescription className="text-base text-card-foreground">
                 Calcule seu percentual de gordura corporal e Taxa Metabólica Basal
               </CardDescription>
@@ -69,7 +67,7 @@ export default function HomePage() {
                 </ul>
               </div>
               <Link href="/gordura-tmb" className="block">
-                <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold py-3 transition-colors">
+                <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold py-3 transition-colors border border-secondary/50">
                   Calcular Gordura & TMB
                 </Button>
               </Link>
@@ -77,31 +75,30 @@ export default function HomePage() {
           </Card>
         </div>
 
-        {/* Additional Info Section */}
         <div className="mt-16 text-center max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold text-primary mb-4">Por que usar nossas calculadoras?</h2>
           <div className="grid md:grid-cols-3 gap-6 mt-8">
             <div className="text-center">
-              <div className="mx-auto mb-3 p-2 bg-primary/20 rounded-full w-fit">
+              <div className="mx-auto mb-3 p-3 bg-primary/20 rounded-full w-fit border border-primary/30">
                 <Dumbbell className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Precisão</h3>
+              <h3 className="font-semibold text-primary mb-2">Precisão</h3>
               <p className="text-sm text-muted-foreground">
                 Fórmulas cientificamente validadas para resultados confiáveis
               </p>
             </div>
             <div className="text-center">
-              <div className="mx-auto mb-3 p-2 bg-secondary/20 rounded-full w-fit">
-                <Calculator className="h-6 w-6 text-secondary" />
+              <div className="mx-auto mb-3 p-3 bg-primary/20 rounded-full w-fit border border-primary/30">
+                <Calculator className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Facilidade</h3>
+              <h3 className="font-semibold text-primary mb-2">Facilidade</h3>
               <p className="text-sm text-muted-foreground">Interface simples e intuitiva para uso rápido</p>
             </div>
             <div className="text-center">
-              <div className="mx-auto mb-3 p-2 bg-primary/20 rounded-full w-fit">
+              <div className="mx-auto mb-3 p-3 bg-primary/20 rounded-full w-fit border border-primary/30">
                 <Activity className="h-6 w-6 text-primary" />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Completo</h3>
+              <h3 className="font-semibold text-primary mb-2">Completo</h3>
               <p className="text-sm text-muted-foreground">Múltiplas métricas para um acompanhamento completo</p>
             </div>
           </div>
@@ -109,7 +106,7 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-card border-t border-gray-200 mt-16">
+      <footer className="bg-card/50 border-t border-border/30 mt-16">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center text-muted-foreground">
             <p className="text-sm">© 2025 Academia Pakitos Dance. Desenvolvido por Rafael Nunes Gasperini.</p>
