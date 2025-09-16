@@ -13,6 +13,9 @@ const nextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/pakitos-dance' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/pakitos-dance/' : '',
+  experimental: {
+    esmExternals: 'loose',
+  },
 }
 
 export default nextConfig
