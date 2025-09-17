@@ -104,6 +104,15 @@ export default function IMCPage() {
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
+          <Alert className="mb-6 border-yellow-200 bg-yellow-50">
+            <Info className="h-4 w-4 text-yellow-600" />
+            <AlertDescription className="text-yellow-800">
+              O IMC é uma medida que leva em conta apenas o peso total em relação à altura, sem diferenciar massa magra
+              (músculos) de gordura corporal. Por isso, pode não refletir com precisão a composição corporal de cada
+              pessoa.
+            </AlertDescription>
+          </Alert>
+
           {/* Calculator Card */}
           <Card className="mb-8">
             <CardHeader>
