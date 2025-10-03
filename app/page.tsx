@@ -1,118 +1,128 @@
-import { Calculator, Dumbbell, Activity } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import { Calculator, BookOpen, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function HomePage() {
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (password === "adminpakitos") {
+      setError("")
+      setOpen(false)
+      router.push("/manual")
+    } else {
+      setError("Senha incorreta. Tente novamente.")
+    }
+  }
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-background border-b border-border/30">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-foreground mb-4">Calculadora Academia Pakitos Dance</h1>
-            <p className="text-muted-foreground text-lg">Monitore sua jornada fitness com precisão</p>
-          </div>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="max-w-md w-full space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-foreground mb-2">Academia Pakitos Dance</h1>
+          <p className="text-muted-foreground">Sua jornada fitness começa aqui</p>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <Card className="hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-2 border-primary/50 hover:border-primary bg-card/80 backdrop-blur-sm">
-            <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 p-4 bg-primary/20 rounded-full w-fit border border-primary/30">
-                <Calculator className="h-8 w-8 text-primary" />
-              </div>
-              <CardTitle className="text-2xl font-bold text-primary">Calculadora de IMC</CardTitle>
-              <CardDescription className="text-base text-card-foreground">
-                Calcule seu Índice de Massa Corporal e descubra se está no peso ideal
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-card-foreground">O que você vai descobrir:</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Seu IMC atual</li>
-                  <li>• Classificação do peso (baixo, normal, sobrepeso, obesidade)</li>
-                  <li>• Faixa de peso saudável para sua altura</li>
-                </ul>
-              </div>
-              <Link href="/imc" className="block">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 transition-colors border border-primary/50">
-                  Calcular IMC
+        {/* Main Content */}
+        <div className="space-y-4">
+          {/* Manual de Exercícios - Protected */}
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-full h-auto py-6 border-2 border-primary/30 hover:border-primary hover:bg-primary/5 transition-all bg-transparent"
+              >
+                <div className="flex items-center gap-3 w-full">
+                  <div className="p-3 bg-primary/20 rounded-full">
+                    <BookOpen className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="flex-1 text-left">
+                    <h3 className="font-semibold text-lg text-foreground">Manual de Exercícios</h3>
+                    <p className="text-sm text-muted-foreground">Acesso restrito</p>
+                  </div>
+                  <Lock className="h-5 w-5 text-primary" />
+                </div>
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Acesso Restrito</DialogTitle>
+                <DialogDescription>Digite a senha para acessar o Manual de Exercícios</DialogDescription>
+              </DialogHeader>
+              <form onSubmit={handlePasswordSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="password">Senha</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Digite a senha"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                      setError("")
+                    }}
+                    className="w-full"
+                  />
+                  {error && <p className="text-sm text-destructive">{error}</p>}
+                </div>
+                <Button type="submit" className="w-full">
+                  Acessar
                 </Button>
-              </Link>
-            </CardContent>
-          </Card>
+              </form>
+            </DialogContent>
+          </Dialog>
 
-          <Card className="hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300 border-2 border-secondary/50 hover:border-secondary bg-card/80 backdrop-blur-sm">
-            <CardHeader className="text-center pb-4">
-              <div className="mx-auto mb-4 p-4 bg-secondary/20 rounded-full w-fit border border-secondary/30">
-                <Activity className="h-8 w-8 text-secondary" />
-              </div>
-              <CardTitle className="text-2xl font-bold text-secondary">Calculadora de TMB</CardTitle>
-              <CardDescription className="text-base text-card-foreground">
-                Calcule sua Taxa Metabólica Basal e necessidades calóricas diárias
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-card-foreground">O que você vai descobrir:</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Taxa Metabólica Basal (TMB)</li>
-                  <li>• Calorias necessárias por dia</li>
-                  <li>• Necessidades por nível de atividade</li>
-                </ul>
-              </div>
-              <Link href="/gordura-tmb" className="block">
-                <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold py-3 transition-colors border border-secondary/50">
-                  Calcular TMB
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
+          {/* Calculadora de IMC e TMB */}
+          <Link href="/calculadoras" className="block">
+            <Card className="hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-2 border-primary/50 hover:border-primary cursor-pointer">
+              <CardHeader className="pb-4">
+                <div className="flex items-center gap-4">
+                  <div className="p-4 bg-primary/20 rounded-full border border-primary/30">
+                    <Calculator className="h-8 w-8 text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-2xl text-primary">Calculadora de IMC e TMB</CardTitle>
+                    <CardDescription className="text-base">Calcule seu IMC e Taxa Metabólica Basal</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Monitore sua composição corporal e necessidades calóricas com precisão
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
-        <div className="mt-16 text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-primary mb-4">Por que usar nossas calculadoras?</h2>
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <div className="text-center">
-              <div className="mx-auto mb-3 p-3 bg-primary/20 rounded-full w-fit border border-primary/30">
-                <Dumbbell className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-semibold text-primary mb-2">Precisão</h3>
-              <p className="text-sm text-muted-foreground">
-                Fórmulas cientificamente validadas para resultados confiáveis
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-3 p-3 bg-primary/20 rounded-full w-fit border border-primary/30">
-                <Calculator className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-semibold text-primary mb-2">Facilidade</h3>
-              <p className="text-sm text-muted-foreground">Interface simples e intuitiva para uso rápido</p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-3 p-3 bg-primary/20 rounded-full w-fit border border-primary/30">
-                <Activity className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-semibold text-primary mb-2">Completo</h3>
-              <p className="text-sm text-muted-foreground">Múltiplas métricas para um acompanhamento completo</p>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-card/50 border-t border-border/30 mt-16">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-muted-foreground">
-            <p className="text-sm">© 2025 Academia Pakitos Dance. Desenvolvido por Rafael Nunes Gasperini.</p>
-            <p className="text-xs mt-2">Consulte sempre um profissional de saúde para orientações personalizadas.</p>
-          </div>
-        </div>
-      </footer>
+        {/* Footer */}
+        <footer className="text-center text-muted-foreground pt-8">
+          <p className="text-sm">© 2025 Academia Pakitos Dance</p>
+          <p className="text-xs mt-1">Desenvolvido por Rafael Nunes Gasperini</p>
+        </footer>
+      </div>
     </div>
   )
 }
